@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<lab name="BFD" version="1" scripttimeout="300" lock="0" author="Henda Paim">
+  <description>Bidireciotion forwarding Detection</description>
+  <body>Configurar bfd</body>
+  <topology>
+    <nodes>
+      <node id="3" name="SW" type="iol" template="iol" image="i86bi_linux_l2-adventerprisek9-ms.SSA.high_iron_20190423.bin" ethernet="3" nvram="1024" ram="1024" serial="0" console="" delay="0" icon="Switch-3D-L2-S.svg" config="0" left="273" top="300">
+        <interface id="0" name="e0/0" type="ethernet" network_id="1"/>
+        <interface id="16" name="e0/1" type="ethernet" network_id="2"/>
+        <interface id="32" name="e0/2" type="ethernet" network_id="3"/>
+        <interface id="48" name="e0/3" type="ethernet" network_id="4"/>
+        <interface id="1" name="e1/0" type="ethernet" network_id="5"/>
+        <interface id="17" name="e1/1" type="ethernet" network_id="6"/>
+      </node>
+      <node id="1" name="R1" type="iol" template="iol" image="i86bi_Linux-L3-AdvEnterpriseK9-M2_157_3_May_2018.bin" ethernet="1" nvram="1024" ram="1024" serial="0" console="" delay="0" icon="Router.png" config="0" left="282" top="135">
+        <interface id="0" name="e0/0" type="ethernet" network_id="4"/>
+      </node>
+      <node id="2" name="R2" type="iol" template="iol" image="i86bi_Linux-L3-AdvEnterpriseK9-M2_157_3_May_2018.bin" ethernet="1" nvram="1024" ram="1024" serial="0" console="" delay="0" icon="Router.png" config="0" left="282" top="474">
+        <interface id="0" name="e0/0" type="ethernet" network_id="2"/>
+      </node>
+      <node id="4" name="R4" type="iol" template="iol" image="i86bi_Linux-L3-AdvEnterpriseK9-M2_157_3_May_2018.bin" ethernet="1" nvram="1024" ram="1024" serial="0" console="" delay="0" icon="Router.png" config="0" left="432" top="222">
+        <interface id="0" name="e0/0" type="ethernet" network_id="6"/>
+      </node>
+      <node id="5" name="R3" type="iol" template="iol" image="i86bi_Linux-L3-AdvEnterpriseK9-M2_157_3_May_2018.bin" ethernet="1" nvram="1024" ram="1024" serial="0" console="" delay="0" icon="Router.png" config="0" left="120" top="222">
+        <interface id="0" name="e0/0" type="ethernet" network_id="1"/>
+      </node>
+      <node id="6" name="R6" type="iol" template="iol" image="i86bi_Linux-L3-AdvEnterpriseK9-M2_157_3_May_2018.bin" ethernet="1" nvram="1024" ram="1024" serial="0" console="" delay="0" icon="Router.png" config="0" left="120" top="390">
+        <interface id="0" name="e0/0" type="ethernet" network_id="5"/>
+      </node>
+      <node id="7" name="R5" type="iol" template="iol" image="i86bi_Linux-L3-AdvEnterpriseK9-M2_157_3_May_2018.bin" ethernet="1" nvram="1024" ram="1024" serial="0" console="" delay="0" icon="Router.png" config="0" left="432" top="390">
+        <interface id="0" name="e0/0" type="ethernet" network_id="3"/>
+      </node>
+    </nodes>
+    <networks>
+      <network id="6" type="bridge" name="Net-R4iface_0" left="492" top="262" visibility="0" icon="lan.png"/>
+      <network id="3" type="bridge" name="Net-R7iface_0" left="492" top="430" visibility="0" icon="lan.png"/>
+      <network id="2" type="bridge" name="Net-R2iface_0" left="342" top="514" visibility="0" icon="lan.png"/>
+      <network id="5" type="bridge" name="Net-R6iface_0" left="180" top="430" visibility="0" icon="lan.png"/>
+      <network id="1" type="bridge" name="Net-R5iface_0" left="180" top="262" visibility="0" icon="lan.png"/>
+      <network id="4" type="bridge" name="Net-R1iface_0" left="336" top="175" visibility="0" icon="lan.png"/>
+    </networks>
+  </topology>
+  <objects>
+    <textobjects>
+      <textobject id="1" name="txt 1" type="text">
+        <data>PGRpdiBpZD0iY3VzdG9tVGV4dDEiIGNsYXNzPSJjdXN0b21TaGFwZSBjdXN0b21UZXh0IGNvbnRleHQtbWVudSB1aS1yZXNpemFibGUganRrLWRyYWdnYWJsZSBkcmFnc3RvcHBlZCIgZGF0YS1wYXRoPSIxIiBzdHlsZT0iZGlzcGxheTogaW5saW5lOyBwb3NpdGlvbjogYWJzb2x1dGU7IGxlZnQ6IDkzcHg7IHRvcDogMjFweDsgY3Vyc29yOiBtb3ZlOyB6LWluZGV4OiAxMDAxOyBoZWlnaHQ6IDQ2LjcxNjdweDsgd2lkdGg6IDQ1MC45MTdweDsiPjxwIGFsaWduPSJjZW50ZXIiIHN0eWxlPSJ2ZXJ0aWNhbC1hbGlnbjogdG9wOyBjb2xvcjogcmdiKDAsIDI1NSwgMCk7IGJhY2tncm91bmQtY29sb3I6IHJnYigwLCAwLCAwKTsgZm9udC1zaXplOiAyMS43NTg0cHg7IGZvbnQtd2VpZ2h0OiBib2xkOyI+QkZEIC0gIEJpZGlyZWNpb25hbCBGb3J3YXJkaW5nIERldGVjdGlvbiAgICAgICAgPC9wPjxkaXYgY2xhc3M9InVpLXJlc2l6YWJsZS1oYW5kbGUgdWktcmVzaXphYmxlLWUiIHN0eWxlPSJ6LWluZGV4OiA5MDsiPjwvZGl2PjxkaXYgY2xhc3M9InVpLXJlc2l6YWJsZS1oYW5kbGUgdWktcmVzaXphYmxlLXMiIHN0eWxlPSJ6LWluZGV4OiA5MDsiPjwvZGl2PjxkaXYgY2xhc3M9InVpLXJlc2l6YWJsZS1oYW5kbGUgdWktcmVzaXphYmxlLXNlIHVpLWljb24gdWktaWNvbi1ncmlwc21hbGwtZGlhZ29uYWwtc2UiIHN0eWxlPSJ6LWluZGV4OiA5MDsiPjwvZGl2PjwvZGl2Pg==</data>
+      </textobject>
+      <textobject id="2" name="txt 2" type="text">
+        <data>PGRpdiBpZD0iY3VzdG9tVGV4dDIiIGNsYXNzPSJjdXN0b21TaGFwZSBjdXN0b21UZXh0IGNvbnRleHQtbWVudSB1aS1yZXNpemFibGUganRrLWRyYWdnYWJsZSBkcmFnc3RvcHBlZCIgZGF0YS1wYXRoPSIyIiBzdHlsZT0iZGlzcGxheTogaW5saW5lOyBwb3NpdGlvbjogYWJzb2x1dGU7IGxlZnQ6IDIxOXB4OyB0b3A6IDU3cHg7IGN1cnNvcjogbW92ZTsgei1pbmRleDogMTAwMTsgaGVpZ2h0OiA0MC44cHg7IHdpZHRoOiAxNzUuNzE3cHg7Ij48cCBhbGlnbj0iY2VudGVyIiBzdHlsZT0idmVydGljYWwtYWxpZ246IHRvcDsgY29sb3I6IHJnYigwLCAwLCAyNTUpOyBiYWNrZ3JvdW5kLWNvbG9yOiByZ2IoMjU1LCAyNTUsIDI1NSk7IGZvbnQtc2l6ZTogMjAuNHB4OyBmb250LXdlaWdodDogYm9sZDsiPkhlbmRhIFBhaW0gICAgICAgIDwvcD48ZGl2IGNsYXNzPSJ1aS1yZXNpemFibGUtaGFuZGxlIHVpLXJlc2l6YWJsZS1lIiBzdHlsZT0iei1pbmRleDogOTA7Ij48L2Rpdj48ZGl2IGNsYXNzPSJ1aS1yZXNpemFibGUtaGFuZGxlIHVpLXJlc2l6YWJsZS1zIiBzdHlsZT0iei1pbmRleDogOTA7Ij48L2Rpdj48ZGl2IGNsYXNzPSJ1aS1yZXNpemFibGUtaGFuZGxlIHVpLXJlc2l6YWJsZS1zZSB1aS1pY29uIHVpLWljb24tZ3JpcHNtYWxsLWRpYWdvbmFsLXNlIiBzdHlsZT0iei1pbmRleDogOTA7Ij48L2Rpdj48L2Rpdj4=</data>
+      </textobject>
+      <textobject id="3" name="txt 3" type="text">
+        <data>PGRpdiBpZD0iY3VzdG9tVGV4dDMiIGNsYXNzPSJjdXN0b21TaGFwZSBjdXN0b21UZXh0IGNvbnRleHQtbWVudSB1aS1yZXNpemFibGUganRrLWRyYWdnYWJsZSBkcmFnc3RvcHBlZCIgZGF0YS1wYXRoPSIzIiBzdHlsZT0iZGlzcGxheTogaW5saW5lOyBwb3NpdGlvbjogYWJzb2x1dGU7IGxlZnQ6IDIzMXB4OyB0b3A6IDU2N3B4OyBjdXJzb3I6IG1vdmU7IHotaW5kZXg6IDEwMDE7IHdpZHRoOiAxNDZweDsgaGVpZ2h0OiAzNC45NXB4OyI+PHAgYWxpZ249ImNlbnRlciIgc3R5bGU9InZlcnRpY2FsLWFsaWduOiB0b3A7IGNvbG9yOiByZ2IoMCwgMCwgMCk7IGJhY2tncm91bmQtY29sb3I6IHJnYigyNTUsIDI1NSwgMjU1KTsgZm9udC1zaXplOiAxNy40NzVweDsgZm9udC13ZWlnaHQ6IG5vcm1hbDsiPjE5Mi4xNjguMjQuMC8yNCAgICAgICAgPC9wPjxkaXYgY2xhc3M9InVpLXJlc2l6YWJsZS1oYW5kbGUgdWktcmVzaXphYmxlLWUiIHN0eWxlPSJ6LWluZGV4OiA5MDsiPjwvZGl2PjxkaXYgY2xhc3M9InVpLXJlc2l6YWJsZS1oYW5kbGUgdWktcmVzaXphYmxlLXMiIHN0eWxlPSJ6LWluZGV4OiA5MDsiPjwvZGl2PjxkaXYgY2xhc3M9InVpLXJlc2l6YWJsZS1oYW5kbGUgdWktcmVzaXphYmxlLXNlIHVpLWljb24gdWktaWNvbi1ncmlwc21hbGwtZGlhZ29uYWwtc2UiIHN0eWxlPSJ6LWluZGV4OiA5MDsiPjwvZGl2PjwvZGl2Pg==</data>
+      </textobject>
+    </textobjects>
+  </objects>
+</lab>
