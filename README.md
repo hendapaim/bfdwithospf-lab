@@ -26,13 +26,3 @@ Na configuração de redes, a detecção rápida de falhas é essencial para gar
 Esta ferramenta é fundamental para ambientes que exigem resposta rápida a eventos de rede.
 
 
-
-Lab on EVE-NG
-
->
-> Conf: 
->    if# bfd interval 50 min_rx 50 multiplier 3 
-
-> router ospf 24
->    bfd all-interfaces
->    network 192.168.24.X 0.0.0.255 area 0
